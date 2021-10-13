@@ -22,7 +22,8 @@ def upload():
         img = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
         cv2.imwrite("app/static/img/resized.jpg",img)
         img = np.resize(img,(28,28,1)).reshape(1,28,28,1)
-        print(img.shape)
+
+        model = tf.keras.models.load_model("app/static/model")
 
         pred = np.argmax(model.predict(img))
 
